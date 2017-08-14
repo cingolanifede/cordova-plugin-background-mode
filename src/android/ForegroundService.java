@@ -50,11 +50,10 @@ public class ForegroundService extends Service {
 
     // Default title of the background notification
     private static final String NOTIFICATION_TITLE =
-            "App is running in background";
+            "HOMEin";
 
     // Default text of the background notification
-    private static final String NOTIFICATION_TEXT =
-            "Doing heavy tasks.";
+    private static final String NOTIFICATION_TEXT = "";
 
     // Default icon of the background notification
     private static final String NOTIFICATION_ICON = "icon";
@@ -113,7 +112,7 @@ public class ForegroundService extends Service {
         boolean isSilent    = settings.optBoolean("silent", false);
 
         if (!isSilent) {
-            //startForeground(NOTIFICATION_ID, makeNotification());
+            startForeground(NOTIFICATION_ID, makeNotification());
         }
 
         PowerManager pm = (PowerManager)
@@ -173,8 +172,7 @@ public class ForegroundService extends Service {
         }
 
         if (bigText || text.contains("\n")) {
-            notification.setStyle(
-                    new Notification.BigTextStyle().bigText(text));
+            notification.setStyle(new Notification.BigTextStyle().bigText(text));
         }
 
         setColor(notification, settings);
@@ -205,8 +203,8 @@ public class ForegroundService extends Service {
             return;
         }
 
-        /*Notification notification = makeNotification(settings);
-        getNotificationManager().notify(NOTIFICATION_ID, notification);*/
+        Notification notification = makeNotification(settings);
+        getNotificationManager().notify(NOTIFICATION_ID, notification);
     }
 
     /**
